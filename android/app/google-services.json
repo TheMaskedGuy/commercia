@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "36415581643",
+    "project_id": "productkart-6c31e",
+    "storage_bucket": "productkart-6c31e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36415581643:android:3ad6aef30c1d3154fc1a4e",
+        "android_client_info": {
+          "package_name": "com.blogspot.chrissin.dev.product_kart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36415581643-um15euno88p57p4hq09cpuvba245gl5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA9taIEtHjGoumFfIF--v6I-kufCTSyT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36415581643-um15euno88p57p4hq09cpuvba245gl5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
