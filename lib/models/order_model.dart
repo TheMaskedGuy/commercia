@@ -10,4 +10,8 @@ class Order {
     return Order(
         id: json['id'], products: Product.fromJsonArray(json['products']));
   }
+
+  static Map<String, Object?> toJson(List<Map> order) {
+    return {'id': 4, 'products': order};
+  }
 }

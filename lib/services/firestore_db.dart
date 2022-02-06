@@ -1,46 +1,40 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:product_kart/models/product_model.dart';
 import 'package:product_kart/widgets/product_card_widget.dart';
 
-class FireStoreDB {
+class FireStoreDB extends GetxController {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  //fetch
-  Stream<List<Product>> getAllProducts() {
-    return _firebaseFirestore
-        .collection('products')
-        .snapshots()
-        .map((snapshot) {
-      return snapshot.docs.map((doc) => Product.fromJson(doc.data())).toList();
-    });
-  }
-
-  //search
-  // Future<List<Product>> queryData(String query) async {
-  //   List queryResult = [];
-  //   await _firebaseFirestore
+  //fetch stream
+  // Stream<List<Product>> getAllProducts() {
+  //   return _firebaseFirestore
   //       .collection('products')
-  //       .where('name', isEqualTo: 'Ap')
-  //       .get()
-  //       .then((QuerySnapshot snap) {
-  //     for (var doc in snap.docs) {
-  //       queryResult.add(doc.data());
-  //     }
+  //       .snapshots()
+  //       .map((snapshot) {
+  //     return snapshot.docs.map((doc) {
+  //       return Product.fromJson(doc.data());
+  //     }).toList();
   //   });
-  //   return queryResult.map((e) => Product.fromJson(e)).toList();
   // }
 
-  //search v2
-  Future getData() async {
-    QuerySnapshot querySnapshot =
-        await _firebaseFirestore.collection('products').get();
-    // final allData = querySnapshot.docs.map((doc) => doc.data());
-    return querySnapshot.docs.map((doc) {
-      Map<String, dynamic> va = doc.data() as Map<String, dynamic>;
-      Product.fromJson(va);
-    }).toList();
+  //fetch - actual
 
-    // print('########################,$allData');
+  Future<List<Product>> getMyProducts() async {
+    List<Product> _products = [];
+    CollectionReference collectionReference =
+        _firebaseFirestore.collection('myprod');
+
+    DocumentSnapshot snapshot = await collectionReference.doc('products').get();
+
+    var data = snapshot.data() as Map;
+    var productsData = data['products'] as List<dynamic>;
+
+    productsData.forEach((prodData) {
+      Product product = Product.fromJson(prodData);
+      _products.add(product);
+    });
+    return _products;
   }
 }
